@@ -18,14 +18,17 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
+      // Used to generate html and injects our bundles
       new HtmlWebpackPlugin({
         template: './index.html',
         title: 'JATE'
       }),
+      // Use our service worker found at src-sw.js
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'src-sw.js',
       }),
+      // Create our manifest file
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -49,6 +52,7 @@ module.exports = () => {
 
     module: {
       rules: [
+        // Loaders for the css
         {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
@@ -56,7 +60,7 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // We use babel-loader in order to use ES6.
+          // Babel is used in order to allow ES6
           use: {
             loader: 'babel-loader',
             options: {
