@@ -20,10 +20,10 @@ export const putDb = async (content) => {
 
   const store = transaction.objectStore('jate');
 
-  const request = store.add(content);
+  const request = store.add({value: content});
 
   const result = await request;
-  console.log(`putDb: ${result}`);
+  // console.log(`putDb: ${result}`);
 }
 
 // TODO: Add logic for a method that gets all the content from the database
@@ -37,7 +37,7 @@ export const getDb = async () => {
   const request = store.getAll();
 
   const result = await request;
-  console.log(`getDb: ${result}`);
+  // console.log(`getDb: ${result}`);
   return result;
 }
 
