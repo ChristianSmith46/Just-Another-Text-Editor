@@ -38,7 +38,7 @@ export const getDb = async () => {
 
   const result = await request;
   // console.log(`getDb: ${result}`);
-  return result;
+  return result[result.length - 1].value;
 }
 
 initdb();
