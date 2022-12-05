@@ -47,6 +47,9 @@ export const getDb = async () => {
   // Async await to get the data
   const result = await request;
   // Returning only the value from the last index that way we don't have to edit editor logic
+  if (result.length < 1) {
+    return null;
+  }
   return result[result.length - 1].value;
 }
 
